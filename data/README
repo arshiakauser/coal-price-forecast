@@ -1,0 +1,25 @@
+# Data
+
+The real dataset (`coal_prices.xlsx`: Richards Bay 4800/5500/5700/6000 kcal NAR
+and India 5500 kcal NAR prices, USD/t, daily, 2020-04 to 2024-06) is
+**proprietary and is not included in this repository**. `*.xlsx` is git-ignored
+so it cannot be committed by accident.
+
+## Using your own copy
+
+Put the file here (e.g. `data/coal_prices.xlsx`) and run:
+
+```bash
+python -m coal_forecast.train --data data/coal_prices.xlsx
+```
+
+Expected layout: first column = date (header may be blank), one column per
+price series. A stray `Date`/`Price` row under the header is tolerated.
+Series names are listed in `src/coal_forecast/config.py`; if none match,
+every numeric column is used.
+
+## Trying the pipeline without the real data
+
+`sample/synthetic_coal_prices.csv` is **randomly generated** (see
+`scripts/make_synthetic_data.py`). It has the same layout and column names but
+no market meaning, so forecasts from it are for demonstration only.
